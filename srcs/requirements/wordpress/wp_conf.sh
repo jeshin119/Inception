@@ -46,14 +46,14 @@ wp core config --dbhost=mariadb:3306 --dbname="$MYSQL_DB" --dbuser="$MYSQL_USER"
 wp core install --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN_N" --admin_password="$WP_ADMIN_P" --admin_email="$WP_ADMIN_E" --allow-root
 
 # Install Redis Object Cache plugin
-wp plugin install redis-cache --activate --allow-root
+# wp plugin install redis-cache --activate --allow-root
 # Add Redis configuration to wp-config.php
-echo "define( 'WP_CACHE_KEY_SALT', '$DOMAIN_NAME' );" >> wp-config.php
-echo "define( 'WP_REDIS_HOST', 'redis' );" >> wp-config.php
-echo "define( 'WP_REDIS_PORT', 6379 );" >> wp-config.php
-echo "define( 'WP_REDIS_TIMEOUT', 1 );" >> wp-config.php
-echo "define( 'WP_REDIS_READ_TIMEOUT', 1 );" >> wp-config.php
-echo "define( 'WP_REDIS_DATABASE', 0 );" >> wp-config.php
+# echo "define( 'WP_CACHE_KEY_SALT', '$DOMAIN_NAME' );" >> wp-config.php
+# echo "define( 'WP_REDIS_HOST', 'redis' );" >> wp-config.php
+# echo "define( 'WP_REDIS_PORT', 6379 );" >> wp-config.php
+# echo "define( 'WP_REDIS_TIMEOUT', 1 );" >> wp-config.php
+# echo "define( 'WP_REDIS_READ_TIMEOUT', 1 );" >> wp-config.php
+# echo "define( 'WP_REDIS_DATABASE', 0 );" >> wp-config.php
 
 # create a new user with the given username, email, password and role
 wp user create "$WP_U_NAME" "$WP_U_EMAIL" --user_pass="$WP_U_PASS" --role="$WP_U_ROLE" --allow-root

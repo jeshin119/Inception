@@ -1,5 +1,5 @@
-WP_DATA = ~/inception/data/wordpress
-DB_DATA = ~/inception/data/mariadb
+WP_DATA = /home/jeshin/data/wordpress
+DB_DATA = /home/jeshin/data/mariadb
 
 all: up
 
@@ -26,8 +26,6 @@ clean:
 	@docker rmi -f $$(docker images -qa) 2>.log || true
 	@docker volume rm $$(docker volume ls -q) 2>.log || true
 	@docker network rm inception 2>.log || true
-	@rm -rf $(WP_DATA) 2>.log || true
-	@rm -rf $(DB_DATA) 2>.log || true
  
 re: clean up
 

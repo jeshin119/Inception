@@ -6,14 +6,14 @@ volumes:
     name: mariadb
     driver: local
     driver_opts:
-      device: /home/jeshin/inception/data/mariadb
+      device: /home/jeshin/data/mariadb
       o: bind
       type: none
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
-      device: /home/jeshin/inception/data/wordpress
+      device: /home/jeshin/data/wordpress
       o: bind
       type: none
 services:
@@ -52,7 +52,7 @@ services:
     build: ./requirements/wordpress
     depends_on:
       - mariadb
-      - redis
+      # - redis
     volumes:
       - wordpress:/var/www/wordpress
     env_file:
@@ -61,30 +61,30 @@ services:
       - inception
     restart: always
 # redis
-  redis:
-    image: redis
-    container_name: redis
-    build: ./requirements/bonus/redis
-    env_file:
-      - ./.env
-    networks:
-      - inception
-    restart: always
-# vsftpd
-  vsftpd:
-    image: vsftpd
-    container_name: vsftpd
-    build: ./requirements/bonus/vsftpd
-    env_file:
-      - ./.env
-    networks:
-      - inception
-    volumes:
-      - wordpress:/var/www/wordpress
-    ports:
-      - "21:21"
-      - "4559:4559"
-    restart: always
+#   redis:
+#     image: redis
+#     container_name: redis
+#     build: ./requirements/bonus/redis
+#     env_file:
+#       - ./.env
+#     networks:
+#       - inception
+#     restart: always
+# # vsftpd
+#   vsftpd:
+#     image: vsftpd
+#     container_name: vsftpd
+#     build: ./requirements/bonus/vsftpd
+#     env_file:
+#       - ./.env
+#     networks:
+#       - inception
+#     volumes:
+#       - wordpress:/var/www/wordpress
+#     ports:
+#       - "21:21"
+#       - "4559:4559"
+#     restart: always
 #network
 networks:
   inception:
